@@ -1,12 +1,12 @@
-var app = require("../");
+var app = require('../');
 
 /* Meta */
 // Gzip support
-app.use(require('koa-gzip')());
+app.use(app.gzip());
 
 // etag & handling
-app.use(require('koa-conditional-get')());
-app.use(require('koa-etag')());
+app.use(app.conditionalGet());
+app.use(app.etag());
 
 /* Response time */
 app.use(function *(next){
@@ -30,7 +30,7 @@ if (process.ENV.debug) {
 }
 
 /* Static files */
-app.use(require('koa-static')('../static', {
+app.use(app.static('../static', {
 	// allow downstream services to respond first
 	defer: true
 }));

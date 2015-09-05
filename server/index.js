@@ -1,9 +1,22 @@
-var koa = require("koa");
+var koa = require('koa');
 var app = koa();
 
 module.exports = app;
 
-require("./misc/bootstrap");
+/* Dependencies */
+
+// middleware
+app.gzip = require('koa-gzip');
+app.conditionalGet = require('koa-conditional-get');
+app.etag = require('koa-etag');
+app.static = require('koa-static');
+
+// runtime
+app.level = require('level');
+
+/* bootstrap */
+
+require('./misc/bootstrap');
 
 /* Services */
 
